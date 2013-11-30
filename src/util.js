@@ -18,7 +18,7 @@ export function drawRegularPolygon(ctx, sides, radius, xCenter, yCenter) {
   return pts;
 }
 
-export function drawConnectingLines(ctx, aPts, bPts, xCenter, yCenter) {
+export function drawConnectingLines(ctx, aPts, bPts) {
   for (var i=0; i < aPts.length; i++) {
     var aPt = aPts[i];
     var bPt = bPts[i];

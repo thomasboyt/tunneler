@@ -1,8 +1,29 @@
 import {drawRegularPolygon, drawConnectingLines} from "sound-and-vision/util";
+import TunnelLine from 'sound-and-vision/line';
+
+module c from "sound-and-vision/constants";
 
 var Tunnel = function(game, settings) {
   this.game = game;
   this.sides = game.sides;
+
+  this.generateGridlineTimer = 0;
+};
+
+Tunnel.prototype.update = function(dt) {
+  this.generateGridlineTimer += dt;
+
+  if (this.generateGridlineTimer > 1000) {
+    this.generateGridlineTimer = 0;
+
+    // generate a tunnel line for each side
+    for (var i = 0; i < this.sides; i++) {
+      coq.entities.create(TunnelLine, {
+        color: 'white',
+        sector: i
+      });
+    }
+  }
 };
 
 Tunnel.prototype.draw = function(ctx) {
@@ -15,18 +36,18 @@ Tunnel.prototype.draw = function(ctx) {
   var rotDeg = (180 + (this.sides - 3) * 180) / this.sides / 2;
   var rot = Math.PI/180 * rotDeg;
 
-  ctx.translate(250, 250);
+  ctx.translate(c.ORIGIN_X, c.ORIGIN_Y);
   ctx.rotate(rot);
-  ctx.translate(-250, -250);
+  ctx.translate(-c.ORIGIN_X, -c.ORIGIN_Y);
 
   // enclosing shape
-  var outerPts = drawRegularPolygon(ctx, this.sides, 240, 250, 250);
+  var outerPts = drawRegularPolygon(ctx, this.sides, c.OUTER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
 
   // center shape
-  var centerPts = drawRegularPolygon(ctx, this.sides, 10, 250, 250);
+  var centerPts = drawRegularPolygon(ctx, this.sides, c.INNER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
 
   // draw lines from center to outer pts
-  drawConnectingLines(ctx, outerPts, centerPts, 250, 250);
+  drawConnectingLines(ctx, outerPts, centerPts);
   
   ctx.restore();
 };

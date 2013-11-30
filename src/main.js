@@ -1,5 +1,6 @@
 import Tunnel from "sound-and-vision/tunnel";
 import Enemy from "sound-and-vision/enemy";
+module c from "sound-and-vision/constants";
 
 var Game = function(canvasId, width, height) {
   window.coq = new Coquette(this, canvasId, width, height, "#000");
@@ -7,8 +8,11 @@ var Game = function(canvasId, width, height) {
   this.sides = 8;
 
   coq.entities.create(Tunnel);
-
+  coq.entities.create(Enemy, {
+    sector: Math.floor(Math.random() * this.sides),
+  });
   this.spawnTimerInc = 0;
+
 };
 
 Game.prototype.update = function(dt) {
@@ -21,4 +25,4 @@ Game.prototype.update = function(dt) {
   }
 };
 
-new Game("container", 500, 500);
+new Game("container", c.CANVAS_WIDTH, c.CANVAS_HEIGHT);

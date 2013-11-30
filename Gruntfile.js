@@ -18,9 +18,22 @@ module.exports = function(grunt) {
         }]
       }
     },
+    traceur: {
+      options: {
+        sourceMaps: true,
+      },
+      main: {
+        files: [{
+          expand: true,
+          cwd: 'tmp/transpiled/',
+          src: '**/*.js',
+          dest: 'tmp/traceured/'
+        }]
+      }
+    },
     concat_sourcemap: {
       main: {
-        src: 'tmp/transpiled/**/*.js',
+        src: 'tmp/traceured/**/*.js',
         dest: 'tmp/game.js',
         options: {
           sourceRoot: ".."
@@ -44,6 +57,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask("default", ["transpile", "concat_sourcemap"]);
+  grunt.registerTask("default", ["transpile", "traceur", "concat_sourcemap"]);
   grunt.registerTask("dev", ["default", "connect", "watch"]);
 };
