@@ -41,13 +41,13 @@ Tunnel.prototype.draw = function(ctx) {
   ctx.translate(-c.ORIGIN_X, -c.ORIGIN_Y);
 
   // enclosing shape
-  var outerPts = drawRegularPolygon(ctx, this.sides, c.OUTER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
+  this.outerPts = drawRegularPolygon(ctx, this.sides, c.OUTER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
 
   // center shape
-  var centerPts = drawRegularPolygon(ctx, this.sides, c.INNER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
+  this.centerPts = drawRegularPolygon(ctx, this.sides, c.INNER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
 
   // draw lines from center to outer pts
-  drawConnectingLines(ctx, outerPts, centerPts);
+  drawConnectingLines(ctx, this.outerPts, this.centerPts);
   
   ctx.restore();
 };

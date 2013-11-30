@@ -1,5 +1,6 @@
 import Tunnel from "sound-and-vision/tunnel";
 import Enemy from "sound-and-vision/enemy";
+import Player from "sound-and-vision/player";
 module c from "sound-and-vision/constants";
 
 var Game = function(canvasId, width, height) {
@@ -8,9 +9,15 @@ var Game = function(canvasId, width, height) {
   this.sides = 8;
 
   coq.entities.create(Tunnel);
+
   coq.entities.create(Enemy, {
     sector: Math.floor(Math.random() * this.sides),
   });
+
+  coq.entities.create(Player, {
+    zindex: 1
+  });
+
   this.spawnTimerInc = 0;
 
 };

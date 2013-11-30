@@ -1,3 +1,5 @@
+import {getOuterPolygonSideLength} from "sound-and-vision/util";
+
 module c from "sound-and-vision/constants";
 
 class Line {
@@ -40,34 +42,17 @@ class Line {
     ctx.rotate(rot);
     ctx.translate(-250, -250);
 
-    // Get bottom angle and top angle of trapezoid
-    var botAngle = getRegularAngle(this.sides) / 2;
-    var topAngle = 90 - botAngle;
-
-    // Get top length of trapezoid of and the offset between the bottom and top
-    // edges
-    var innerRadius = 10;
-    var topLength = 2 * innerRadius * Math.sin(180/this.sides);
-    var offset = (innerRadius - topLength)/2;
-
-    // Get the actual x coord of the line
-    var x = 250 - offset/2;
-
-    // Offsets on either side of the line
-    var dist = this.yOffset / Math.tan(botAngle / (180/Math.PI));
+    var len = getOuterPolygonSideLength(this.sides, this.yOffset, c.INNER_RADIUS);
 
     // Draw line
     ctx.beginPath();
-    ctx.moveTo(250 - dist, 250 + this.yOffset);
-    ctx.lineTo(250 + dist, 250 + this.yOffset);
+    ctx.moveTo(250 - len/2, 250 + this.yOffset);
+    ctx.lineTo(250 + len/2, 250 + this.yOffset);
     ctx.stroke();
 
     ctx.restore();
   }
 }
 
-function getRegularAngle(sides) {
-  return (180 + (sides - 3) * 180) / sides;
-}
 
 export default Line;
