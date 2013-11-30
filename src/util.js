@@ -1,13 +1,5 @@
-export function drawRegularPolygon(ctx, sides, radius, xCenter, yCenter, rot) {
+export function drawRegularPolygon(ctx, sides, radius, xCenter, yCenter) {
   var pts = [];
-
-  ctx.save();
-
-  if (rot) {
-    ctx.translate(xCenter, yCenter);
-    ctx.rotate(rot);
-    ctx.translate(-xCenter, -yCenter);
-  }
 
   ctx.beginPath();
 
@@ -22,20 +14,11 @@ export function drawRegularPolygon(ctx, sides, radius, xCenter, yCenter, rot) {
   }
 
   ctx.stroke();
-  ctx.restore();
 
   return pts;
 }
 
-export function drawConnectingLines(ctx, aPts, bPts, xCenter, yCenter, rot) {
-  ctx.save();
-
-  if (rot) {
-    ctx.translate(xCenter, yCenter);
-    ctx.rotate(rot);
-    ctx.translate(-xCenter, -yCenter);
-  }
-
+export function drawConnectingLines(ctx, aPts, bPts, xCenter, yCenter) {
   for (var i=0; i < aPts.length; i++) {
     var aPt = aPts[i];
     var bPt = bPts[i];
@@ -45,6 +28,4 @@ export function drawConnectingLines(ctx, aPts, bPts, xCenter, yCenter, rot) {
     ctx.lineTo(bPt[0], bPt[1]);
     ctx.stroke();
   }
-
-  ctx.restore();
 }
