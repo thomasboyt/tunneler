@@ -5,7 +5,7 @@ class Player {
   constructor(game, settings) {
     this.sides = game.sides;
     this.sector = 5;  // TODO: generalize for all polygons
-    //this.points = getRegularPolygonPts(this.sides, c.OUTER_RADIUS, c.ORIGIN_X, c.ORIGIN_Y);
+    this.zindex = settings.zindex;
   }
 
   update(dt) {

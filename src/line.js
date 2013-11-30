@@ -10,6 +10,7 @@ class Line {
 
     this.color = settings.color || 'red';
     this.width = settings.width || 1;
+    this.zindex = settings.zindex;
 
     this.yOffset = 0;
   }

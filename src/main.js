@@ -12,6 +12,7 @@ var Game = function(canvasId, width, height) {
 
   coq.entities.create(Enemy, {
     sector: Math.floor(Math.random() * this.sides),
+    zindex: 2
   });
 
   coq.entities.create(Player, {
