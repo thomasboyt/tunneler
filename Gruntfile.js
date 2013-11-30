@@ -4,6 +4,9 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+    clean: {
+      main: ['tmp/']
+    },
     transpile: {
       main: {
         type: 'amd',
@@ -57,6 +60,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask("default", ["transpile", "traceur", "concat_sourcemap"]);
+  grunt.registerTask("default", ["clean", "transpile", "traceur", "concat_sourcemap"]);
   grunt.registerTask("dev", ["default", "connect", "watch"]);
 };
