@@ -3,7 +3,7 @@ import TunnelLine from 'sound-and-vision/line';
 
 module c from "sound-and-vision/constants";
 
-class Tunnel {
+export default class Tunnel {
   constructor(game, settings) {
     this.game = game;
     this.sides = game.sides;
@@ -53,5 +53,3 @@ class Tunnel {
     ctx.restore();
   }
 }
-
-export default Tunnel;

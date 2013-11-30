@@ -1,7 +1,7 @@
 import {getOuterPolygonSideLength} from "sound-and-vision/util";
 module c from "sound-and-vision/constants";
 
-class Player {
+export default class Player {
   constructor(game, settings) {
     this.sides = game.sides;
     this.sector = 5;  // TODO: generalize for all polygons
@@ -51,5 +51,3 @@ class Player {
     ctx.restore();
   }
 }
-
-export default Player;

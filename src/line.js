@@ -2,7 +2,7 @@ import {getOuterPolygonSideLength} from "sound-and-vision/util";
 
 module c from "sound-and-vision/constants";
 
-class Line {
+export default class Line {
   constructor(game, settings) {
     this.sides = game.sides;
     this.sector = settings.sector;
@@ -54,6 +54,3 @@ class Line {
     ctx.restore();
   }
 }
-
-
-export default Line;
